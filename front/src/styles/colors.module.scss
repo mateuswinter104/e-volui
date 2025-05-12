@@ -1,0 +1,24 @@
+// src/styles/colors.module.scss
+
+@use "./_colors.scss" as *;
+
+:export {
+  primary: $primary;
+  hoverPrimary: $hoverPrimary;
+
+  white: $white;
+  black: $black;
+
+  gray: $gray;
+  gray5: $gray5;
+  gray4: $gray4;
+  gray3: $gray3;
+  gray2: $gray2;
+  gray1: $gray1;
+
+  success: $success;
+  warning: $warning;
+  error: $error;
+
+  shadow_effect: $shadow_effect;
+}

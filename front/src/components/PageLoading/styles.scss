@@ -1,0 +1,34 @@
+.receipt-wrapper {
+  max-width: 290px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+
+  @media (max-width: 920px) {
+    max-width: none;
+  }
+}
+
+.inputs-column {
+  display: flex;
+  gap: 32px;
+
+  @media (max-width: 920px) {
+    flex-direction: column;
+  }
+}
+
+.loading-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 58px);
+  gap: 12px;
+
+  @media (max-width: 920px) {
+    flex-direction: column;
+  }
+}

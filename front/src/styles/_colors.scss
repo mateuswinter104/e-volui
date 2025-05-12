@@ -1,0 +1,20 @@
+// src/styles/_colors.scss
+
+$primary: #1f7334;
+$hoverPrimary: darken($primary, 5%);
+
+$white: #ffffff;
+$black: #000000;
+
+$gray5: #f2f2f2;
+$gray4: #d9d9d9;
+$gray3: #a6a6a6;
+$gray2: #808080;
+$gray1: #555555;
+$gray: #292929;
+
+$success: #198754;
+$warning: #ffc107;
+$error: #dc3545;
+
+$shadow_effect: 0 2px 8px rgba(0, 0, 0, 0.05);

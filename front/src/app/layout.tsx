@@ -4,7 +4,7 @@ import { DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import "@/styles/globals.scss";
 
-export const dmSans = DM_Sans({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
   weight: ["300", "400", "500", "600", "700"],

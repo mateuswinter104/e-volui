@@ -18,11 +18,13 @@ export default function Text(props: TextProps): JSX.Element {
     truncate ? "truncate" : ""
   }`.trim();
 
+  const appliedColor = color ? color : colors.gray1;
+
   return (
     <p
       className={combinedClassName}
       onClick={onClick}
-      color={color ? color : colors.primary}
+      style={{ color: appliedColor }}
     >
       {link ? (
         <a href={link} target="_blank" rel="noopener noreferrer">

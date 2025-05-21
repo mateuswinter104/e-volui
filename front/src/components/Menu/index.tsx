@@ -4,7 +4,7 @@ import Text from "../../components/Text";
 import "./styles.scss";
 import menuIcon from "../../../public/evolui-icon.png";
 import Icon from "../../components/Icon";
-import { useRouter } from "next/navigation";
+/* import { useRouter } from "next/navigation"; */
 import { toast } from "sonner";
 import useMediaQuery from "@/app/utils/functions/useMediaQuery";
 import { useState } from "react";
@@ -22,7 +22,7 @@ const menuItems = [
 ];
 
 export const Menu = () => {
-  const router = useRouter();
+  /* const router = useRouter(); */
   const isMobile = useMediaQuery("(max-width: 920px)");
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -40,43 +40,43 @@ export const Menu = () => {
   return isMobile ? (
     <>
       <div className="menu">
-        <div className="menu-header-mobile">
-          <div onClick={() => router.push("https://www.hubgovtechlab.com.br/")}>
+        {/* <div onClick={() => router.push("https://www.hubgovtechlab.com.br/")}>
             <Image src={menuIcon} alt="Logo" width={25} height={25} />
-          </div>
-          <Icon name="RiMenuLine" size={25} onClick={() => handleMenu()} />
-        </div>
+          </div> */}
+        <Icon name="RiMenuLine" size={20} onClick={() => handleMenu()} />
       </div>
       {menuOpen && (
         <div className="menu-opened">
           <div className="menu-header-mobile-opened">
-            <Icon name="RiCloseFill" size={30} onClick={() => handleMenu()} />
+            <Icon name="RiCloseFill" size={25} onClick={() => handleMenu()} />
           </div>
-          <div className="d-flex flex-column gap-8">
-            <Text className="f-14" color={colors.gray2}>
-              Lista de pacientes
-            </Text>
-            <div className="menu-item-top">
-              <Text>Acessar lista</Text>
-              <Text>25</Text>
-            </div>
-          </div>
-          <div className="d-flex flex-column gap-8">
-            <Text className="f-14" color={colors.gray2}>
-              Avaliações
-            </Text>
+          <div className="d-flex flex-column gap-24">
             <div className="d-flex flex-column gap-8">
-              {menuItems.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleMenuItemClick(index)}
-                  className={`menu-item ${
-                    menuActive === index ? "active" : ""
-                  }`}
-                >
-                  <Text>{item}</Text>
-                </div>
-              ))}
+              <Text className="f-14" color={colors.gray2}>
+                Lista de pacientes
+              </Text>
+              <div className="menu-item-top">
+                <Text>Acessar lista</Text>
+                <Text>25</Text>
+              </div>
+            </div>
+            <div className="d-flex flex-column gap-8">
+              <Text className="f-14" color={colors.gray2}>
+                Avaliações
+              </Text>
+              <div className="d-flex flex-column gap-8">
+                {menuItems.map((item, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleMenuItemClick(index)}
+                    className={`menu-item ${
+                      menuActive === index ? "active" : ""
+                    }`}
+                  >
+                    <Text>{item}</Text>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

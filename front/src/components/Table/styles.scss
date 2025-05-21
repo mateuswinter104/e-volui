@@ -1,0 +1,75 @@
+@use "@/styles/colors" as *;
+
+.searchbar-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchbar {
+  padding: 14px 16px;
+  height: 100%;
+  width: 100%;
+  gap: 10px;
+  margin: 0;
+  background-color: $white;
+  border: none !important;
+
+  &:focus {
+    border: none;
+    outline: none !important;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: $gray3;
+    font-weight: 300;
+  }
+
+  &:disabled {
+    background-color: $gray5 !important;
+    color: $gray3 !important;
+  }
+
+  @media (max-width: 920px) {
+    height: 48px;
+    width: 100% !important;
+    max-width: none;
+  }
+}
+
+.searchbar-wrapper {
+  position: relative;
+  border: 1px solid $gray4 !important;
+  border-radius: 50px !important;
+  overflow: hidden !important;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+
+  &.active {
+    border: 1px solid $primary !important;
+    outline: none !important;
+  }
+
+  @media (max-width: 920px) {
+    height: 48px;
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.not-found-table-data {
+  background-color: $gray5;
+  border: 1px solid $gray5;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  padding: 40px;
+}

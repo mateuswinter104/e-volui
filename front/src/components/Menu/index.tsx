@@ -4,46 +4,80 @@ import Text from "../../components/Text";
 import "./styles.scss";
 import menuIcon from "../../../public/evolui-icon.png";
 import Icon from "../../components/Icon";
-import { useRouter } from "next/navigation";
+/* import { useRouter } from "next/navigation"; */
 import { toast } from "sonner";
 import useMediaQuery from "@/app/utils/functions/useMediaQuery";
 import { useState } from "react";
+import colors from "@/styles/colors.module.scss";
+
+const menuItems = [
+  "TUG",
+  "OLS",
+  "FRT",
+  "TST",
+  "TSL5",
+  "TSL (30s)",
+  "DPP",
+  "Mini-COG",
+];
 
 export const Menu = () => {
-  const router = useRouter();
+  /* const router = useRouter(); */
   const isMobile = useMediaQuery("(max-width: 920px)");
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [menuActive, setMenuActive] = useState<number>();
 
   const handleMenu = () => {
     setMenuOpen((state) => !state);
   };
 
+  const handleMenuItemClick = (i: number) => {
+    setMenuActive(i);
+    setMenuOpen(false);
+  };
+
   return isMobile ? (
     <>
       <div className="menu">
-        <div className="menu-header-mobile">
-          <div onClick={() => router.push("https://www.hubgovtechlab.com.br/")}>
+        {/* <div onClick={() => router.push("https://www.hubgovtechlab.com.br/")}>
             <Image src={menuIcon} alt="Logo" width={25} height={25} />
-          </div>
-          <Icon name="RiMenuLine" size={25} onClick={() => handleMenu()} />
-        </div>
+          </div> */}
+        <Icon name="RiMenuLine" size={20} onClick={() => handleMenu()} />
       </div>
       {menuOpen && (
         <div className="menu-opened">
           <div className="menu-header-mobile-opened">
-            <div
-              onClick={() => router.push("https://www.hubgovtechlab.com.br/")}
-            >
-              <Image src={menuIcon} alt="Logo" width={25} height={25} />
-            </div>
-            <Icon name="RiCloseFill" size={30} onClick={() => handleMenu()} />
+            <Icon name="RiCloseFill" size={25} onClick={() => handleMenu()} />
           </div>
-          <div className="d-flex flex-column gap-32">
-            <Text onClick={() => toast("Em breve!")}>Meu perfil</Text>
-            <Text onClick={() => toast("Em breve!")}>Desafios</Text>
-            <Text onClick={() => toast("Em breve!")}>Startups cadastradas</Text>
-            <Text onClick={() => toast("Em breve!")}>Minha conta</Text>
+          <div className="d-flex flex-column gap-24">
+            <div className="d-flex flex-column gap-8">
+              <Text className="f-14" color={colors.gray2}>
+                Lista de pacientes
+              </Text>
+              <div className="menu-item-top">
+                <Text>Acessar lista</Text>
+                <Text>25</Text>
+              </div>
+            </div>
+            <div className="d-flex flex-column gap-8">
+              <Text className="f-14" color={colors.gray2}>
+                Avaliações
+              </Text>
+              <div className="d-flex flex-column gap-8">
+                {menuItems.map((item, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleMenuItemClick(index)}
+                    className={`menu-item ${
+                      menuActive === index ? "active" : ""
+                    }`}
+                  >
+                    <Text>{item}</Text>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -2,6 +2,7 @@
 
 $primary: #1f7334;
 $hoverPrimary: darken($primary, 5%);
+$ghostPrimary: rgba(31, 115, 52, 0.7);
 
 $white: #ffffff;
 $black: #000000;
@@ -16,5 +17,8 @@ $gray: #292929;
 $success: #198754;
 $warning: #ffc107;
 $error: #dc3545;
+
+$pink: #bf9d9c;
+$blue: #44749c;
 
 $shadow_effect: 0 2px 8px rgba(0, 0, 0, 0.05);

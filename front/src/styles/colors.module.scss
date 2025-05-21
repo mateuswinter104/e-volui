@@ -5,6 +5,7 @@
 :export {
   primary: $primary;
   hoverPrimary: $hoverPrimary;
+  ghostPrimary: $ghostPrimary;
 
   white: $white;
   black: $black;
@@ -19,6 +20,8 @@
   success: $success;
   warning: $warning;
   error: $error;
+  pink: $pink;
+  blue: $blue;
 
   shadow_effect: $shadow_effect;
 }

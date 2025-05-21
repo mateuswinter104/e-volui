@@ -52,6 +52,8 @@ import {
   RiLinkedinBoxFill,
   RiInstagramFill,
   RiShareFill,
+  RiMenLine,
+  RiWomenLine,
 } from "react-icons/ri";
 import { BsImageAlt } from "react-icons/bs";
 import { TbFileExport } from "react-icons/tb";
@@ -136,6 +138,8 @@ const iconComponents: Record<string, React.ElementType> = {
   RiLinkedinBoxFill,
   RiInstagramFill,
   RiShareFill,
+  RiWomenLine,
+  RiMenLine,
 };
 
 const Icon: React.FC<IconProps> = ({

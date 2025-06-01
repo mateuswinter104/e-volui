@@ -111,19 +111,11 @@ export default function Index(): JSX.Element {
           <Text className="f-24 bold">Lista de pacientes</Text>
           <SearchBar
             onChange={(e) => setSearchValue(e.target.value)}
-            placeholder="Busque por um paciente específico"
+            placeholder="Busque por um paciente"
           />
         </div>
         <Table data={patientsList} searchTerm={searchValue} startups={false} />
       </div>
-      {/* <div className="not-found-page">
-        <Image
-          src={searchFile}
-          width="100"
-          height="100"
-          alt="Procurando arquivos"
-        />
-      </div> */}
     </div>
   );
 }

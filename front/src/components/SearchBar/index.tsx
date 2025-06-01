@@ -1,13 +1,13 @@
-import './styles.scss'
-import Icon from '../Icon'
-import { useState } from 'react'
+import "./styles.scss";
+import Icon from "../Icon";
+import { useState } from "react";
 
 interface SearchBar {
-  filter?: boolean
-  placeholder?: string
-  filterActive?: boolean
-  handleOpenFIlterModal?: () => void
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  filter?: boolean;
+  placeholder?: string;
+  filterActive?: boolean;
+  handleOpenFIlterModal?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const SearchBar: React.FC<SearchBar> = ({
@@ -15,14 +15,14 @@ export const SearchBar: React.FC<SearchBar> = ({
   onChange,
   placeholder,
   filterActive,
-  handleOpenFIlterModal
+  handleOpenFIlterModal,
 }) => {
-  const [active, setActive] = useState(false)
+  const [active, setActive] = useState(false);
 
   return (
     <div className="searchbar-container">
       <div
-        className={`searchbar-wrapper ${active ? 'active' : ''}`}
+        className={`searchbar-wrapper ${active ? "active" : ""}`}
         onFocus={() => setActive(true)}
         onBlur={() => setActive(false)}
       >
@@ -37,17 +37,17 @@ export const SearchBar: React.FC<SearchBar> = ({
       {filter && (
         <div
           onClick={handleOpenFIlterModal}
-          className={`searchbar-filter ${filterActive ? 'active' : ''}`}
+          className={`searchbar-filter ${filterActive ? "active" : ""}`}
         >
           <Icon
             name="RiFilter2Line"
-            fill={filterActive ? '#ffffff' : '#808080'}
+            fill={filterActive ? "#ffffff" : "#808080"}
             size={20}
           />
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;

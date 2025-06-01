@@ -24,7 +24,7 @@ export const CardItem = ({ item, onClick }: CardItemProps) => {
   return (
     <div className="card-wrapper" onClick={onClick}>
       <div className="card-content">
-        <div className="d-flex w-100 justify-space-between">
+        <div className="d-flex w-100 justify-content-between">
           <div className="d-flex gap-8 align-items-center">
             <Text>{name}</Text>
             <Text className="f-12 semi-bold">{`${age} anos`}</Text>

@@ -4,8 +4,9 @@
 
 :export {
   primary: $primary;
-  primary: $secondary;
+  secondary: $secondary;
   hoverPrimary: $hoverPrimary;
+  hoverSecondary: $hoverSecondary;
   ghostPrimary: $ghostPrimary;
 
   white: $white;
@@ -17,6 +18,8 @@
   gray3: $gray3;
   gray2: $gray2;
   gray1: $gray1;
+
+  hoverWhite: $hoverWhite;
 
   success: $success;
   warning: $warning;

@@ -1,0 +1,117 @@
+@use "@/styles/colors" as *;
+
+button {
+  display: flex !important;
+  gap: 6px !important;
+  align-items: center !important;
+  padding: 6px 12px 6px 12px !important;
+  justify-content: center !important;
+  border-radius: 6px;
+  height: 38px;
+  width: 100%;
+  max-width: 290px;
+
+  @media (max-width: 920px) {
+    max-width: none;
+    height: 50px;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+}
+
+.icon-button {
+  width: 50px !important;
+  height: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  flex: none;
+}
+
+.fluid {
+  width: 100%;
+  max-width: none;
+  justify-content: center;
+}
+
+.small {
+  padding: 4px 12px !important;
+  border-radius: 4px !important;
+}
+
+.ghost {
+  border: none !important;
+  background-color: $gray5 !important;
+}
+
+.primary {
+  border: none !important;
+  background-color: $primary !important;
+
+  &:hover {
+    background-color: $hoverPrimary !important;
+  }
+}
+
+.secondary {
+  border: none !important;
+  background-color: $secondary !important;
+
+  &:hover {
+    background-color: $hoverSecondary !important;
+  }
+}
+
+.secondary-ghost {
+  border: 1px solid $secondary !important;
+  background-color: lighten($secondary, 20%) !important;
+
+  &:hover {
+    background-color: lighten($secondary, 15%) !important;
+  }
+}
+
+.gray {
+  border: none !important;
+  background-color: $gray5 !important;
+
+  &:hover {
+    background-color: darken($gray5, 3) !important;
+  }
+}
+
+.red {
+  border: none !important;
+  background-color: $error !important;
+
+  &:hover {
+    background-color: $error !important;
+  }
+}
+
+.disabled {
+  border: none !important;
+  background-color: $gray5 !important;
+  p {
+    color: $gray2 !important;
+    font-weight: 400 !important;
+  }
+}
+
+.ghost-red {
+  background-color: transparent !important;
+  border: 1px solid $error !important;
+
+  p {
+    color: $error !important;
+  }
+
+  &:hover {
+    background-color: $error !important;
+
+    p {
+      color: $white !important;
+    }
+  }
+}

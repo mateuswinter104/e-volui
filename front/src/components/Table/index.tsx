@@ -8,6 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 /* import { useRouter } from "next/navigation"; */
 import { CardItem } from "./components/CardItem";
 import { toast } from "sonner";
+import useMediaQuery from "@/app/utils/functions/useMediaQuery";
 
 interface ItemProps {
   name: string;
@@ -24,9 +25,10 @@ interface Table {
   startups?: boolean;
 }
 
-const ITEMS_PER_PAGE = 12;
-
 export const Table: React.FC<Table> = ({ data, searchTerm }) => {
+  const isBigScreen = useMediaQuery("(min-width: 1440px)");
+  const ITEMS_PER_PAGE = isBigScreen ? 12 : 9;
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = ITEMS_PER_PAGE;
@@ -63,6 +65,21 @@ export const Table: React.FC<Table> = ({ data, searchTerm }) => {
 
   return filteredData && filteredData.length > 0 && currentItems ? (
     <div className="d-flex flex-column gap-24 w-100">
+      <div className="card-container">
+        {currentItems.map((item, index) => (
+          <CardItem
+            key={index}
+            item={item}
+            onClick={() => toast("Em breve!")}
+            /* onClick={() =>
+              item.id &&
+              (startups
+                ? router.push(`/startup/view/${item.id}`)
+                : router.push(`/challenge/view/${item.id}`))
+            } */
+          />
+        ))}
+      </div>
       <div className="d-flex gap-2 justify-content-end align-items-center">
         <div className="d-flex align-items-center">
           <Text className="f-14">
@@ -103,21 +120,6 @@ export const Table: React.FC<Table> = ({ data, searchTerm }) => {
             }
           />
         </div>
-      </div>
-      <div className="card-container">
-        {currentItems.map((item, index) => (
-          <CardItem
-            key={index}
-            item={item}
-            onClick={() => toast("Em breve!")}
-            /* onClick={() =>
-              item.id &&
-              (startups
-                ? router.push(`/startup/view/${item.id}`)
-                : router.push(`/challenge/view/${item.id}`))
-            } */
-          />
-        ))}
       </div>
     </div>
   ) : (

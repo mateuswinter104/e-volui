@@ -13,7 +13,7 @@ export default function WithMenuLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen">
+    <div className="menu-layout">
       <Menu />
       <main className="flex-1 p-4">{children}</main>
     </div>

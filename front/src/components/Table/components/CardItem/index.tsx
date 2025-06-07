@@ -1,7 +1,6 @@
 import colors from "@/styles/colors.module.scss";
 import "./styles.scss";
 import Text from "@/components/Text";
-import useMediaQuery from "@/app/utils/functions/useMediaQuery";
 import Icon from "@/components/Icon";
 
 interface ItemProps {
@@ -17,7 +16,6 @@ interface CardItemProps {
 }
 
 export const CardItem = ({ item, onClick }: CardItemProps) => {
-  const smallScreen = useMediaQuery("(max-width: 400px)");
   const { sex, name, age, diagnosis } = item;
   const isWoman = sex === "Feminino";
 
@@ -29,24 +27,11 @@ export const CardItem = ({ item, onClick }: CardItemProps) => {
             <Text>{name}</Text>
             <Text className="f-12 semi-bold">{`${age} anos`}</Text>
           </div>
-          {smallScreen ? (
-            <Icon
-              name={isWoman ? "RiWomenLine" : "RiMenLine"}
-              size={15}
-              fill={isWoman ? colors.pink : colors.blue}
-            />
-          ) : (
-            <div
-              className="card-area"
-              style={{
-                backgroundColor: isWoman ? colors.pink : colors.blue,
-              }}
-            >
-              <Text color={colors.white} className="f-10 semi-bold truncate">
-                {sex}
-              </Text>
-            </div>
-          )}
+          <Icon
+            name={isWoman ? "RiWomenLine" : "RiMenLine"}
+            size={15}
+            fill={isWoman ? colors.pink : colors.blue}
+          />
         </div>
         <div className="d-flex flex-column">
           <Text className="f-12 semi-bold">Diagnóstico</Text>

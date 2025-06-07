@@ -22,6 +22,15 @@ body {
   color: $gray1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+main {
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 img,
@@ -91,10 +100,20 @@ ol {
 /* 5. Global utility classes */
 .container {
   width: 100%;
-  max-width: 120rem;
-  padding: 4.8rem 2.4rem;
-  margin: 0 auto;
-  height: 100vh;
+  margin: 40px 0;
+  min-width: 1155px;
+
+  @media (max-width: 1440px) {
+    min-width: 955px;
+  }
+
+  @media (max-width: 920px) {
+    max-width: 120rem;
+    min-width: 0;
+    padding: 4.8rem 2.4rem;
+    margin: 0 auto;
+    height: 100vh;
+  }
 }
 
 .text-center {
@@ -177,4 +196,21 @@ ol {
   font-size: 12px !important;
   background-color: $gray !important;
   max-width: 350px !important;
+}
+
+.menu-layout {
+  @media (min-width: 920px) {
+    display: flex;
+    gap: 40px;
+    margin: auto;
+    width: 100%;
+    justify-content: center;
+    max-width: 120rem;
+    height: 100vh;
+    max-width: 1440px;
+  }
+
+  @media (max-width: 1440px) {
+    max-width: 1240px;
+  }
 }

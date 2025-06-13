@@ -6,73 +6,13 @@ import useMediaQuery from "@/app/utils/functions/useMediaQuery";
 import { useEffect, useRef, useState } from "react";
 import colors from "@/styles/colors.module.scss";
 import { usePathname, useRouter } from "next/navigation";
-
-const functionalTests = [
-  {
-    id: 1,
-    code: "TUG",
-    name: "Timed Up and Go",
-    objective: "Avaliar o equilíbrio dinâmico",
-    description:
-      "Solicita-se que o paciente levante-se de uma cadeira, caminhe 3 metros, vire, retorne e sente-se novamente na mesma cadeira. O tempo para completar a tarefa é cronometrado.",
-    result:
-      "O resultado final é obtido em segundos através da média das duas últimas tentativas",
-  },
-  {
-    id: 3,
-    code: "FRT",
-    name: "Functional Reach Test",
-    objective: "Avaliar o equilíbrio durante a inclinação",
-    description:
-      "Solicita-se que o paciente se posicione ao lado de uma parede com os ombros flexionados em 90° e cotovelos estendidos. O paciente deve inclinar o tronco para frente mantendo os braços estendidos e sem tirar o calcanhar do chão. Mede-se a distância entre a marca inicial e a marca que o paciente alcançou.",
-    result: "O resultado final é obtido através da média de três tentativas.",
-  },
-  {
-    id: 4,
-    code: "TST",
-    name: "Tandem Stand Test",
-    objective: "Avaliar o equilíbrio em linha",
-    description:
-      "Solicita-se que o paciente posicione um pé à frente do outro, encostando o calcanhar do pé à frente nos dedos do pé de trás, e permaneça nessa posição o máximo de tempo possível (até 10 segundos).",
-    result: "O resultado final é obtido através da média de três tentativas.",
-  },
-  {
-    id: 5,
-    code: "TSL5",
-    name: "Teste Senta e Levanta 5 (cinco) vezes",
-    objective: "Avaliar o nível do mobilidade",
-    description:
-      "Avalia força e resistência dos membros inferiores, medindo o tempo necessário para sentar e levantar da cadeira cinco vezes consecutivas, sem uso dos braços.",
-    result:
-      "O resultado final é obtido através do menor tempo entre duas tentativas.",
-  },
-  {
-    id: 7,
-    code: "FMPP",
-    name: "Força Máxima de Preensão Palmar",
-    objective: "Avaliar força muscular",
-    description:
-      "Solicita-se que o paciente se posicione em uma cadeira com as costas e braços apoiados, cotovelo flexionado a 90° e realize a maior força de preensão possível na alça de um dinamômetro de preensão palmar.",
-    result:
-      "O resultado final é obtido através da quantidade de força que o paciente deposita no aparelho.",
-  },
-  {
-    id: 8,
-    code: "MEEM",
-    name: "Mini-Mental",
-    objective: "Avaliar a capacidade cognitiva",
-    description:
-      "Consiste no preenchimento de questões que envolvem (1) orientação do paciente, questionando o ano, estação, dia/semana, dia/mês e mês; (2) capacidade de registro, solicitando que o paciente repita as palavras “pente, rua e azul”; (3) atenção e cálculo, solicitando que o paciente realize um cálculo de subtração cinco vezes;  (4) evocação, solicitando que o paciente repita as palavras pronunciadas na etapa de “capacidade de registro”; e (5) linguagem, solicitando que o paciente identifique objetos, repita uma frase, siga um comando de três estágios, leia, escreva e copie um desenho.",
-    result:
-      "O resultado final é obtido através da soma da pontuação que o paciente adquiriu em cada uma das etapas, sendo 30 a pontuação máxima.",
-  },
-];
+import { functionalTests } from "@/utils/services/api";
 
 export const Menu = () => {
   const isMobile = useMediaQuery("(max-width: 920px)");
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [menuActive, setMenuActive] = useState<number>();
+  const [menuActive, setMenuActive] = useState<string>("patientList");
 
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
@@ -82,9 +22,14 @@ export const Menu = () => {
     setMenuOpen((state) => !state);
   };
 
-  const handleMenuItemClick = (i: number) => {
-    setMenuActive(i);
+  const handleMenuItemClick = (code: string) => {
+    setMenuActive(code);
     setMenuOpen(false);
+    if (code === "patientList") {
+      router.push(`/`);
+    } else {
+      router.push(`/${code.toLowerCase()}`);
+    }
   };
 
   useEffect(() => {
@@ -95,6 +40,13 @@ export const Menu = () => {
       };
     }
   }, [menuOpen]);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      const route = pathname.replace("/", "");
+      setMenuActive(route.toUpperCase());
+    }
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -127,10 +79,24 @@ export const Menu = () => {
         </div>
         <div className="d-flex flex-column gap-24">
           <div className="d-flex flex-column gap-8">
-            <div className={`menu-item ${pathname.match("/") ? "active" : ""}`}>
-              <div className="d-flex w-100 gap-32 align-items-center justify-content-between">
-                <Text className="f-14">Lista de pacientes</Text>
-                <Text className="semi-bold">25</Text>
+            <div
+              className={`menu-item ${
+                menuActive === "patientList" ? "active" : ""
+              }`}
+            >
+              <div
+                onClick={() => handleMenuItemClick("patientList")}
+                className="d-flex w-100 gap-32 align-items-center justify-content-between"
+              >
+                <Text color={menuActive === "patientList" ? colors.white : ""}>
+                  Lista de pacientes
+                </Text>
+                <Text
+                  color={menuActive === "patientList" ? colors.white : ""}
+                  className="semi-bold"
+                >
+                  25
+                </Text>
               </div>
             </div>
           </div>
@@ -142,14 +108,24 @@ export const Menu = () => {
               {functionalTests.map((item, index) => (
                 <div
                   key={index}
-                  onClick={() => handleMenuItemClick(index)}
+                  onClick={() => handleMenuItemClick(item.code)}
                   className={`menu-item ${
-                    menuActive === index ? "active" : ""
+                    menuActive === item.code ? "active" : ""
                   }`}
                 >
                   <div className="d-flex flex-column gap-1">
-                    <Text className="f-12">{item.name}</Text>
-                    <Text className="semi-bold">{item.code}</Text>
+                    <Text
+                      color={menuActive === item.code ? colors.white : ""}
+                      className="f-12"
+                    >
+                      {item.name}
+                    </Text>
+                    <Text
+                      color={menuActive === item.code ? colors.white : ""}
+                      className="semi-bold"
+                    >
+                      {item.code}
+                    </Text>
                   </div>
                 </div>
               ))}
@@ -165,11 +141,13 @@ export const Menu = () => {
           e-volui
         </Text>
         <div
-          onClick={() => router.push("/")}
-          className={`menu-item ${pathname.match("/") ? "active" : ""}`}
+          onClick={() => handleMenuItemClick("patientList")}
+          className={`menu-item ${
+            menuActive === "patientList" ? "active" : ""
+          }`}
         >
           <Text
-            color={pathname.match("/") ? colors.white : ""}
+            color={menuActive === "patientList" ? colors.white : ""}
             className="semi-bold"
           >
             Lista de pacientes
@@ -179,18 +157,18 @@ export const Menu = () => {
         {functionalTests.map((item, index) => (
           <div
             key={index}
-            onClick={() => handleMenuItemClick(index)}
-            className={`menu-item ${menuActive === index ? "active" : ""}`}
+            onClick={() => handleMenuItemClick(item.code)}
+            className={`menu-item ${menuActive === item.code ? "active" : ""}`}
           >
             <div className="d-flex flex-column gap-1">
               <Text
-                color={menuActive === index ? colors.white : ""}
+                color={menuActive === item.code ? colors.white : ""}
                 className="f-12"
               >
                 {item.name}
               </Text>
               <Text
-                color={menuActive === index ? colors.white : ""}
+                color={menuActive === item.code ? colors.white : ""}
                 className="semi-bold"
               >
                 {item.code}

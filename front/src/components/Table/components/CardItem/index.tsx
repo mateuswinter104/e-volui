@@ -24,8 +24,8 @@ export const CardItem = ({ item, onClick }: CardItemProps) => {
       <div className="card-content">
         <div className="d-flex w-100 justify-content-between">
           <div className="d-flex gap-8 align-items-center">
-            <Text>{name}</Text>
-            <Text className="f-12 semi-bold">{`${age} anos`}</Text>
+            <Text className="semi-bold">{name}</Text>
+            <Text className="f-12 light">{`${age} anos`}</Text>
           </div>
           <Icon
             name={isWoman ? "RiWomenLine" : "RiMenLine"}
@@ -34,8 +34,10 @@ export const CardItem = ({ item, onClick }: CardItemProps) => {
           />
         </div>
         <div className="d-flex flex-column">
-          <Text className="f-12 semi-bold">Diagnóstico</Text>
-          <Text className="f-14">{diagnosis}</Text>
+          <Text color={colors.primary} className="f-12 semi-bold">
+            Diagnóstico
+          </Text>
+          <Text className="f-14 light">{diagnosis}</Text>
         </div>
       </div>
     </div>

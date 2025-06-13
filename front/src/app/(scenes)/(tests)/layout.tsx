@@ -1,21 +1,20 @@
-// app/with-menu/layout.tsx
 import type { Metadata } from "next";
-import { Menu } from "@/components/Menu";
 
 export const metadata: Metadata = {
   title: "Área do Profissional | e-volui",
   description: "Painel de controle para fisioterapeutas",
 };
 
-export default function WithMenuLayout({
+export default function TestsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="menu-layout">
-      <Menu />
-      <main>{children}</main>
+    <div className="container">
+      <div className="d-flex flex-column gap-32">
+        <div className="d-flex flex-column gap-24">{children}</div>
+      </div>
     </div>
   );
 }

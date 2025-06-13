@@ -15,10 +15,9 @@
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
-  border: 1px solid $gray5;
   cursor: pointer;
   transform: translateY(-1px);
-  background-color: $white;
+  background-color: $gray5;
 
   @media (max-width: 1440px) {
     width: calc(34% - 18px);

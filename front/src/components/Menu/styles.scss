@@ -41,7 +41,7 @@
     width: 100%;
 
     &.active {
-      background-color: $secondary;
+      background-color: $primary;
     }
   }
 
@@ -78,9 +78,10 @@
     z-index: inherit;
     height: fit-content;
     width: 100%;
-    max-width: 240px;
+    max-width: 230px;
     border: none;
     margin: 40px 0;
+    padding: 0;
 
     .menu-content {
       display: flex;

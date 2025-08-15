@@ -1,0 +1,66 @@
+@use "@/styles/colors" as *;
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  width: fit-content;
+
+  input {
+    display: none;
+  }
+
+  .checkbox-mark {
+    border: 2px solid $gray4;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+
+    &.active {
+      background-color: $secondary;
+      border: 2px solid $secondary;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.checkbox-button {
+  width: 100%;
+  max-width: 290px;
+  padding: 16px 24px;
+  height: 43px;
+  border: 1px solid $gray4;
+  border-radius: 50px;
+
+  &:hover {
+    background-color: $hoverWhite;
+  }
+
+  &.active {
+    background-color: lighten($secondary, 20%);
+    border: 1px solid $secondary;
+  }
+
+  @media (max-width: 920px) {
+    max-width: none;
+    height: 48px;
+  }
+}
+
+.check-list {
+  border-bottom: 1px solid $gray4;
+  width: 100%;
+  padding: 16px 8px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}

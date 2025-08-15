@@ -5,9 +5,7 @@ import Text from "../Text";
 import Icon from "../Icon";
 import "./styles.scss";
 import "react-multi-carousel/lib/styles.css";
-/* import { useRouter } from "next/navigation"; */
 import { CardItem } from "./components/CardItem";
-import { toast } from "sonner";
 import useMediaQuery from "@/app/utils/functions/useMediaQuery";
 
 interface ItemProps {
@@ -15,6 +13,7 @@ interface ItemProps {
   age: number;
   diagnosis: string;
   sex: string;
+  id: number
 }
 
 interface Table {
@@ -61,8 +60,6 @@ export const Table: React.FC<Table> = ({ data, searchTerm }) => {
     setCurrentPage(1);
   }, [searchTerm]);
 
-  /* const router = useRouter(); */
-
   return filteredData && filteredData.length > 0 && currentItems ? (
     <div className="d-flex flex-column gap-24 w-100">
       <div className="card-container">
@@ -70,13 +67,7 @@ export const Table: React.FC<Table> = ({ data, searchTerm }) => {
           <CardItem
             key={index}
             item={item}
-            onClick={() => toast("Em breve!")}
-            /* onClick={() =>
-              item.id &&
-              (startups
-                ? router.push(`/startup/view/${item.id}`)
-                : router.push(`/challenge/view/${item.id}`))
-            } */
+            route={`/patient/${item?.id}`}
           />
         ))}
       </div>

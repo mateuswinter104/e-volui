@@ -2,6 +2,7 @@ import colors from "@/styles/colors.module.scss";
 import "./styles.scss";
 import Text from "@/components/Text";
 import Icon from "@/components/Icon";
+import Link from "next/link";
 
 interface ItemProps {
   name: string;
@@ -12,15 +13,16 @@ interface ItemProps {
 
 interface CardItemProps {
   item: ItemProps;
-  onClick: () => void;
+  route: string
 }
 
-export const CardItem = ({ item, onClick }: CardItemProps) => {
+export const CardItem = ({ item, route }: CardItemProps) => {
   const { sex, name, age, diagnosis } = item;
   const isWoman = sex === "Feminino";
 
   return (
-    <div className="card-wrapper" onClick={onClick}>
+    <div className="card-wrapper">
+      <Link href={route}>
       <div className="card-content">
         <div className="d-flex w-100 justify-content-between">
           <div className="d-flex gap-8 align-items-center">
@@ -40,6 +42,7 @@ export const CardItem = ({ item, onClick }: CardItemProps) => {
           <Text className="f-14 light">{diagnosis}</Text>
         </div>
       </div>
+    </Link>
     </div>
   );
 };

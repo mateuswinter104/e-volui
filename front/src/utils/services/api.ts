@@ -6,6 +6,24 @@ export interface TestProps {
   description: string;
   result: string;
 }
+export interface Test {
+    id: number
+    name: string
+    code: string
+    created_at: string
+    result: number
+}
+
+export interface Patient {
+  id: number
+  name: string
+  age: number
+  sex: "Feminino" | "Masculino"
+  diagnosis: string
+  tests: Test[]
+}
+
+
 
 export const functionalTests: TestProps[] = [
   {
@@ -68,95 +86,141 @@ export const functionalTests: TestProps[] = [
   },
 ];
 
-export const patientsList = [
+const generateRandomTests = (): Test[] => {
+  const selectedTests = functionalTests
+    .sort(() => 0.5 - Math.random()) // embaralha
+    .slice(0, 5) // pega 5
+    .map((t) => ({
+      id: t.id,
+      name: t.name,
+      code: t.code,
+      created_at: new Date(
+        Date.now() - Math.floor(Math.random() * 10000000000)
+      ).toISOString(),
+      result: parseFloat((Math.random() * 30 + 1).toFixed(1)),
+    }))
+  return selectedTests
+}
+
+export const patientsList: Patient[] = [
   {
+    id: 1,
     name: "Maria Oliveira",
     age: 67,
     sex: "Feminino",
     diagnosis: "Osteoporose no joelho direito",
+    tests: generateRandomTests()
   },
   {
+    id: 2,
     name: "João Ferreira",
     age: 62,
     sex: "Masculino",
     diagnosis: "Hérnia de disco lombar",
+    tests: generateRandomTests(),
   },
   {
+    id: 3,
     name: "Ana Beatriz Silva",
     age: 73,
     sex: "Feminino",
     diagnosis: "Tendinite no ombro esquerdo",
+    tests: generateRandomTests(),
   },
   {
+    id: 4,
     name: "Carlos Eduardo Souza",
     age: 69,
     sex: "Masculino",
     diagnosis: "Artrose bilateral de joelhos",
+    tests: generateRandomTests(),
   },
   {
+    id: 5,
     name: "Luciana Ribeiro",
     age: 64,
     sex: "Feminino",
     diagnosis: "Lesão de LCA no joelho direito",
+    tests: generateRandomTests(),
   },
   {
+    id: 6,
     name: "Fernando Gomes",
     age: 69,
     sex: "Masculino",
     diagnosis: "Entorse de tornozelo esquerdo",
+    tests: generateRandomTests(),
   },
   {
+    id: 7,
     name: "Juliana Mendes",
     age: 61,
     sex: "Feminino",
     diagnosis: "Bursite trocantérica",
+    tests: generateRandomTests(),
   },
   {
+    id: 8,
     name: "Ricardo Martins",
     age: 65,
     sex: "Masculino",
     diagnosis: "Compressão do nervo ciático",
+    tests: generateRandomTests(),
   },
   {
+    id: 9,
     name: "Patrícia Lima",
     age: 70,
     sex: "Feminino",
     diagnosis: "Fibromialgia",
+    tests: generateRandomTests(),
   },
   {
+    id: 10,
     name: "Marcelo Castro",
     age: 68,
     sex: "Masculino",
     diagnosis: "Escoliose leve",
+    tests: generateRandomTests(),
   },
   {
+    id: 11,
     name: "Tatiane Rocha",
     age: 75,
     sex: "Feminino",
     diagnosis: "Síndrome do impacto no ombro direito",
+    tests: generateRandomTests(),
   },
   {
+    id: 12,
     name: "Diego Alves",
     age: 63,
     sex: "Masculino",
     diagnosis: "Lombalgia crônica",
+    tests: generateRandomTests(),
   },
   {
+    id: 13,
     name: "Helena Costa",
     age: 66,
     sex: "Feminino",
     diagnosis: "Artrite reumatoide",
+    tests: generateRandomTests(),
   },
   {
+    id: 14,
     name: "Fábio Nogueira",
     age: 61,
     sex: "Masculino",
     diagnosis: "Degeneração de disco intervertebral",
+    tests: generateRandomTests(),
   },
   {
+    id: 14,
     name: "Rafaela Monteiro",
     age: 67,
     sex: "Feminino",
     diagnosis: "Cervicalgia com radiculopatia",
+    tests: generateRandomTests(),
   },
 ];

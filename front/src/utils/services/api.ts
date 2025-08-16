@@ -7,11 +7,11 @@ export interface TestProps {
   result: string;
 }
 export interface Test {
-    id: number
-    name: string
-    code: string
-    created_at: string
-    result: number
+  id: number
+  name: string
+  code: string
+  created_at: string
+  result: number
 }
 
 export interface Patient {
@@ -87,20 +87,24 @@ export const functionalTests: TestProps[] = [
 ];
 
 const generateRandomTests = (): Test[] => {
-  const selectedTests = functionalTests
-    .sort(() => 0.5 - Math.random()) // embaralha
-    .slice(0, 5) // pega 5
-    .map((t) => ({
-      id: t.id,
-      name: t.name,
-      code: t.code,
+  const result: Test[] = [];
+
+  for (let i = 0; i < 20; i++) {
+    const randomTest = functionalTests[Math.floor(Math.random() * functionalTests.length)];
+    result.push({
+      id: Math.random() * 10000,
+      name: randomTest.name,
+      code: randomTest.code,
       created_at: new Date(
         Date.now() - Math.floor(Math.random() * 10000000000)
       ).toISOString(),
       result: parseFloat((Math.random() * 30 + 1).toFixed(1)),
-    }))
-  return selectedTests
-}
+    });
+  }
+
+  return result;
+};
+
 
 export const patientsList: Patient[] = [
   {

@@ -12,7 +12,7 @@
         border-top: 1px solid $gray5;
     }
 
-    &:hover {
+    &.onHover {
         background-color: $hoverWhite;
         cursor: default;
     }
@@ -21,4 +21,24 @@
 .hidden-checkbox {
     position: absolute;
     left: 8px;
+}
+
+.test-details {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 3px 8px;
+
+    &:hover {
+        background-color: $hoverWhite;
+        cursor: default;
+    }
+}
+
+.results-table {
+    width: 700px;
+    background-color: $hoverWhite;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }

@@ -35,10 +35,64 @@
     }
 }
 
-.results-table {
-    width: 700px;
-    background-color: $hoverWhite;
-    border-radius: 10px;
+.add-test-button {
     display: flex;
-    flex-direction: column;
+    align-content: center;
+    gap: 4px;
+    border-radius: 4px;
+    padding: 2px 5px;
+    transition: ease 0.5s;
+    cursor: default;
+
+    &:hover {
+        &.canHover {
+            background-color: $hoverWhite;
+        }
+    }
+}
+
+.checkbox-write-input {
+    display: inline !important;
+    border: none;
+    font-size: 12px;
+    outline: none;
+    color: $gray1;
+    width: 100%;
+    margin-top: -1px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.test-icon {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    border-radius: 2px;
+    padding: 0 2px;
+
+    &:hover {
+        background-color: $hoverWhite;
+
+        &.add {
+            svg {
+                fill: $success;
+            }
+        }
+
+        &.cancel {
+            svg {
+                fill: $error !important;
+            }
+        }
+    }
 }

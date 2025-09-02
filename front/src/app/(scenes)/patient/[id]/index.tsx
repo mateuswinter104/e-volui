@@ -6,17 +6,44 @@ import Button from "@/components/Button";
 import colors from "@/styles/colors.module.scss";
 import useMediaQuery from "@/app/utils/functions/useMediaQuery";
 import { toast } from "sonner";
-import { Patient } from "@/utils/services/api";
+import { Patient, Test } from "@/utils/services/api";
 import TestList from "./components/TestList";
 
 interface Props {
   patient: Patient
 }
 
+export interface TestGrouped {
+  id: number
+  code: string;
+  name: string
+  similarTests: Test[];
+}
+
 export default function Index({ patient }: Props): JSX.Element {
   const isMobile = useMediaQuery("(max-width: 920px)");
-  console.log("patient: ", patient);
 
+  const groupedTests: TestGrouped[] = Object.values(
+    patient?.tests.reduce((acc, test) => {
+      if (!acc[test.code]) {
+        acc[test.code] = {
+          id: test.id,
+          code: test.code,
+          name: test.name,
+          similarTests: [test],
+        };
+      } else {
+        acc[test.code].similarTests.push(test);
+      }
+
+      // sempre ordenar os similarTests do mais novo para o mais antigo
+      acc[test.code].similarTests.sort(
+        (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
+
+      return acc;
+    }, {} as Record<string, TestGrouped>)
+  )
 
   return (
     <div className="container">
@@ -93,7 +120,7 @@ export default function Index({ patient }: Props): JSX.Element {
             </Button>
           </div>
         )}
-        <TestList tests={patient?.tests} />
+        <TestList tests={groupedTests} />
       </div>
     </div>
   );

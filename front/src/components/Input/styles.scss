@@ -1,0 +1,115 @@
+@use "@/styles/colors" as *;
+
+.icon-input {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  top: 21%;
+  right: 12px;
+  display: flex;
+  cursor: default;
+  justify-content: center;
+  align-items: center;
+
+  .can-interact {
+    cursor: pointer;
+  }
+}
+
+.number-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 43px;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+
+  .num-operation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 43px;
+    background-color: $white;
+
+    &:hover {
+      background-color: $gray5;
+    }
+  }
+
+  .num-operation.border-right {
+    border-right: 1px solid $gray5;
+  }
+}
+
+.input-percent-symbol {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+.input {
+  font-size: 14px;
+  padding: 6px 16px;
+  height: 100%;
+  gap: 10px;
+  margin: 0;
+  background-color: $white;
+  border: none !important;
+
+  &:focus {
+    border: none;
+    outline: none !important;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: $gray3;
+    font-weight: 400;
+  }
+
+  &:disabled {
+    background-color: $gray5 !important;
+    color: $gray3 !important;
+  }
+
+  @media (max-width: 920px) {
+    height: 48px;
+    width: 100% !important;
+    max-width: none;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+  border: 1px solid $gray4 !important;
+  border-radius: 8px !important;
+  height: 43px;
+  overflow: hidden !important;
+
+  &.active {
+    border: 1px solid $secondary !important;
+    outline: none !important;
+  }
+
+  @media (max-width: 920px) {
+    height: 48px;
+    width: 100% !important;
+    max-width: none;
+  }
+}
+
+.tratatives {
+  border-radius: 0 0 0 10px !important;
+}

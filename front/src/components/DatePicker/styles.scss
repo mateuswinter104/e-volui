@@ -1,0 +1,51 @@
+@use "@/styles/colors" as *;
+
+.input-date {
+  height: 43px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  padding: 6px 16px !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  background-color: $white !important;
+  border: 1px solid $gray4 !important;
+
+  &:focus {
+    border: 1px solid $secondary !important;
+    outline: none !important;
+  }
+
+  &:disabled {
+    cursor: not-allowed !important;
+  }
+
+  @media (max-width: 920px) {
+    height: 48px !important;
+  }
+}
+
+.date-picker-disabled {
+  .flatpickr-input {
+    background-color: $gray5 !important;
+    color: $gray3 !important;
+    cursor: not-allowed !important;
+  }
+}
+
+.datePickerContainer {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.placeholder-icon {
+  .disabled & {
+    color: $gray3;
+    cursor: not-allowed;
+  }
+}
+
+.placeholder-icon {
+  right: 16px !important;
+}

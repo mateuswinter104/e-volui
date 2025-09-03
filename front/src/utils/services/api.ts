@@ -112,7 +112,7 @@ export const patientsList: Patient[] = [
     name: "Maria Oliveira",
     age: 67,
     sex: "Feminino",
-    diagnosis: "Osteoporose no joelho direito",
+    diagnosis: "Lombalgia",
     tests: generateRandomTests()
   },
   {
@@ -128,7 +128,7 @@ export const patientsList: Patient[] = [
     name: "Ana Beatriz Silva",
     age: 73,
     sex: "Feminino",
-    diagnosis: "Tendinite no ombro esquerdo",
+    diagnosis: "Tendinite suprespinhal ombro esquerdo",
     tests: generateRandomTests(),
   },
   {
@@ -136,7 +136,7 @@ export const patientsList: Patient[] = [
     name: "Carlos Eduardo Souza",
     age: 69,
     sex: "Masculino",
-    diagnosis: "Artrose bilateral de joelhos",
+    diagnosis: "Artrose joelho direito",
     tests: generateRandomTests(),
   },
   {
@@ -144,7 +144,7 @@ export const patientsList: Patient[] = [
     name: "Luciana Ribeiro",
     age: 64,
     sex: "Feminino",
-    diagnosis: "Lesão de LCA no joelho direito",
+    diagnosis: "Sindrome do Impacto Femoroacetabular",
     tests: generateRandomTests(),
   },
   {
@@ -160,7 +160,7 @@ export const patientsList: Patient[] = [
     name: "Juliana Mendes",
     age: 61,
     sex: "Feminino",
-    diagnosis: "Bursite trocantérica",
+    diagnosis: "DPOC",
     tests: generateRandomTests(),
   },
   {
@@ -168,7 +168,7 @@ export const patientsList: Patient[] = [
     name: "Ricardo Martins",
     age: 65,
     sex: "Masculino",
-    diagnosis: "Compressão do nervo ciático",
+    diagnosis: "Cervicalgia",
     tests: generateRandomTests(),
   },
   {
@@ -184,7 +184,7 @@ export const patientsList: Patient[] = [
     name: "Marcelo Castro",
     age: 68,
     sex: "Masculino",
-    diagnosis: "Escoliose leve",
+    diagnosis: "Parkinson",
     tests: generateRandomTests(),
   },
   {
@@ -192,7 +192,7 @@ export const patientsList: Patient[] = [
     name: "Tatiane Rocha",
     age: 75,
     sex: "Feminino",
-    diagnosis: "Síndrome do impacto no ombro direito",
+    diagnosis: "AVC",
     tests: generateRandomTests(),
   },
   {
@@ -208,7 +208,7 @@ export const patientsList: Patient[] = [
     name: "Helena Costa",
     age: 66,
     sex: "Feminino",
-    diagnosis: "Artrite reumatoide",
+    diagnosis: "DTM",
     tests: generateRandomTests(),
   },
   {
@@ -216,7 +216,7 @@ export const patientsList: Patient[] = [
     name: "Fábio Nogueira",
     age: 61,
     sex: "Masculino",
-    diagnosis: "Degeneração de disco intervertebral",
+    diagnosis: "Epicondilite lateral E",
     tests: generateRandomTests(),
   },
   {
@@ -224,7 +224,7 @@ export const patientsList: Patient[] = [
     name: "Rafaela Monteiro",
     age: 67,
     sex: "Feminino",
-    diagnosis: "Cervicalgia com radiculopatia",
+    diagnosis: "Cervicalgia",
     tests: generateRandomTests(),
   },
 ];

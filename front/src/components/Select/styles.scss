@@ -1,0 +1,82 @@
+@use "@/styles/colors" as *;
+
+.select__control {
+  background-color: $white !important;
+  border: 1px solid $gray4 !important;
+
+  &.select__control--is-disabled {
+    background-color: $gray5 !important;
+    border-color: $gray4 !important;
+    color: $gray2 !important;
+    cursor: not-allowed !important;
+  }
+}
+
+.select__placeholder {
+  color: $gray3;
+}
+
+.select__menu {
+  color: $gray1 !important;
+  background-color: $white !important;
+}
+
+.select__option {
+  &.select__option--is-selected {
+    background-color: $white !important;
+    color: $secondary !important;
+  }
+
+  &:hover {
+    background-color: $gray5 !important;
+  }
+
+  &.select__option--is-focused {
+    background-color: $gray5 !important;
+  }
+}
+
+.select__control {
+  font-size: 14px;
+  border-radius: 8px !important;
+  padding: 2.5px 7px;
+  width: 100%;
+  min-width: 290px;
+
+  @media (max-width: 920px) {
+    max-width: none;
+    height: 48px;
+  }
+
+  &:hover {
+    border-color: $secondary !important;
+  }
+
+  &.select__control--is-focused {
+    border-color: $secondary !important;
+    box-shadow: none !important;
+  }
+}
+
+.select__menu {
+  font-size: 16px;
+  z-index: 9999;
+}
+
+.select__placeholder {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.is-disabled {
+    color: $gray2;
+  }
+}
+
+.select__option.select__option--is-focused {
+  background-color: $gray5 !important;
+}
+
+.select__option {
+  font-size: 14px !important;
+}

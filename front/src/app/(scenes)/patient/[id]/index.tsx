@@ -8,6 +8,7 @@ import useMediaQuery from "@/app/utils/functions/useMediaQuery";
 import { toast } from "sonner";
 import { Patient, Test } from "@/utils/services/api";
 import TestList from "./components/TestList";
+import Link from "next/link";
 
 interface Props {
   patient: Patient
@@ -58,19 +59,17 @@ export default function Index({ patient }: Props): JSX.Element {
             </div>
             {!isMobile && (
               <div className="d-flex align-items-center gap-24">
-                <Button
-                  icon="RiFileList2Line"
-                  fill={colors.white}
-                  iconSize={20}
-                  className="secondary"
-                  onClick={
-                    () => toast("Em breve!") /* router.push("/patient/create") */
-                  }
-                >
-                  <Text color={colors.white} className="semi-bold f-14">
-                    Anamnese
-                  </Text>
-                </Button>
+                <Link href={`/patient/${patient?.id}/anamnese`}>
+                  <Button
+                    icon="RiFileList2Line"
+                    fill={colors.white}
+                    iconSize={20}
+                    className="secondary"
+                  >
+                    <Text color={colors.white} className="semi-bold f-14">
+                      Anamnese
+                    </Text>
+                  </Button></Link>
                 <Button
                   icon="RiAddLine"
                   fill={colors.white}

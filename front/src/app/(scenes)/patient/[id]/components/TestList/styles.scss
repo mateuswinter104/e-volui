@@ -96,3 +96,30 @@ input[type="number"] {
         }
     }
 }
+
+.chart-wrapper {
+    height: 350px;
+    width: 100%;
+    padding: 32px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: $hoverWhite;
+}
+
+.feedback-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+
+    &.good-feedback {
+        background-color: $primary;
+    }
+
+    &.bad-feedback {
+        background-color: $error;
+    }
+}

@@ -1,0 +1,31 @@
+@use "@/styles/colors" as *;
+
+.textarea {
+  background-color: $white;
+  border-color: $gray4;
+  color: $gray;
+}
+
+.textarea {
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 50px;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary;
+  }
+
+  &:disabled {
+    background-color: $gray5;
+    cursor: not-allowed;
+    border: 1px solid $gray5;
+
+    &::placeholder {
+      color: $gray3;
+      font-weight: 300;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Patient, Test } from "@/utils/services/api";
 import TestList from "./components/TestList";
 import Link from "next/link";
+import Icon from "@/components/Icon";
 
 interface Props {
   patient: Patient
@@ -47,80 +48,80 @@ export default function Index({ patient }: Props): JSX.Element {
   )
 
   return (
-    <div className="container">
-      <div className="d-flex flex-column gap-32">
-        <div className="d-flex flex-column gap-24">
-          <div className="d-flex w-100 justify-content-between align-items-center">
-            <div className="d-flex align-items-center gap-8">
+    <div className="d-flex flex-column gap-32">
+      <div className="d-flex flex-column gap-24">
+        <div className="d-flex w-100 justify-content-between align-items-center">
+          <div className="d-flex align-items-center gap-8">
+            <Link href='/' className="d-flex align-items-center gap-1">
+              <Icon name="RiArrowLeftSLine" />
               <Text className="f-24 semi-bold">
                 {patient?.name}
               </Text>
-              <Text className="f-14">{`${patient?.age} anos`}</Text>
-            </div>
-            {!isMobile && (
-              <div className="d-flex align-items-center gap-24">
-                <Link href={`/patient/${patient?.id}/anamnese`}>
-                  <Button
-                    icon="RiFileList2Line"
-                    fill={colors.white}
-                    iconSize={20}
-                    className="secondary"
-                  >
-                    <Text color={colors.white} className="semi-bold f-14">
-                      Anamnese
-                    </Text>
-                  </Button></Link>
+            </Link>
+            <Text className="f-14">{`${patient?.age} anos`}</Text>
+          </div>
+          {!isMobile && (
+            <div className="d-flex align-items-center gap-24">
+              <Link href={`/patient/${patient?.id}/anamnese`}>
                 <Button
-                  icon="RiAddLine"
+                  icon="RiFileList2Line"
                   fill={colors.white}
                   iconSize={20}
-                  className="primary"
-                  onClick={
-                    () => toast("Em breve!") /* router.push("/patient/create") */
-                  }
+                  className="secondary"
                 >
                   <Text color={colors.white} className="semi-bold f-14">
-                    Adicionar teste
+                    Anamnese
                   </Text>
-                </Button>
-              </div>
-            )}
-          </div>
+                </Button></Link>
+              <Button
+                icon="RiAddLine"
+                fill={colors.white}
+                iconSize={20}
+                className="primary"
+                onClick={
+                  () => toast("Em breve!") /* router.push("/patient/create") */
+                }
+              >
+                <Text color={colors.white} className="semi-bold f-14">
+                  Adicionar teste
+                </Text>
+              </Button>
+            </div>
+          )}
         </div>
-        {isMobile && (
-          <div className="d-flex gap-16 flex-column">
+      </div>
+      {isMobile && (
+        <div className="d-flex gap-16 flex-column">
+          <Link href={`/patient/${patient?.id}/anamnese`}>
             <Button
               icon="RiFileList2Line"
               fill={colors.white}
               iconSize={24}
               fluid
               className="secondary"
-              onClick={
-                () => toast("Em breve!") /* router.push("/patient/create") */
-              }
             >
               <Text color={colors.white} className="semi-bold">
                 Anamnese
               </Text>
-            </Button>
-            <Button
-              icon="RiAddLine"
-              fill={colors.white}
-              iconSize={24}
-              fluid
-              className="primary"
-              onClick={
-                () => toast("Em breve!") /* router.push("/patient/create") */
-              }
-            >
-              <Text color={colors.white} className="semi-bold">
-                Adicionar teste
-              </Text>
-            </Button>
-          </div>
-        )}
-        <TestList tests={groupedTests} />
-      </div>
+            </Button></Link>
+
+          <Button
+            icon="RiAddLine"
+            fill={colors.white}
+            iconSize={24}
+            fluid
+            className="primary"
+            onClick={
+              () => toast("Em breve!") /* router.push("/patient/create") */
+            }
+          >
+            <Text color={colors.white} className="semi-bold">
+              Adicionar teste
+            </Text>
+          </Button>
+        </div>
+      )}
+      <TestList tests={groupedTests} />
     </div>
   );
 }

@@ -32,14 +32,23 @@ export const Table: React.FC<Table> = ({ data, searchTerm }) => {
 
   const itemsPerPage = ITEMS_PER_PAGE;
 
+  function normalizeText(text: string) {
+    return text
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
   const filteredData = data?.filter((item) => {
-    const search = (searchTerm || "").toLowerCase();
+    const search = normalizeText(searchTerm || "");
+
     return (
-      item.name?.toLowerCase().includes(search) ||
-      item.diagnosis?.toLowerCase().includes(search) ||
-      item.age?.toString().toLowerCase().includes(search)
+      normalizeText(item.name || "").includes(search) ||
+      normalizeText(item.diagnosis || "").includes(search) ||
+      normalizeText(item.age?.toString() || "").includes(search)
     );
   });
+
 
   const totalPages =
     filteredData && Math.ceil(filteredData.length / itemsPerPage);

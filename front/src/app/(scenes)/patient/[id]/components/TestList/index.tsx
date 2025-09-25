@@ -10,6 +10,8 @@ import { TestGrouped } from "../..";
 import ReactECharts from "echarts-for-react";
 import useMediaQuery from "@/app/utils/functions/useMediaQuery";
 import Image from "next/image";
+import Button from "@/components/Button";
+import { toast } from "sonner";
 
 interface Props {
     tests: TestGrouped[];
@@ -219,7 +221,7 @@ const TestList: React.FC<Props> = ({ tests }) => {
     return groupedTests?.length > 0 ? (
         <div className="d-flex gap-40 w-100">
             <div className="d-flex gap-32 w-100">
-                <div className="d-flex flex-column" style={{ minWidth: isMobile ? '100%' : '550px' }}>
+                <div className="d-flex flex-column w-100">
                     <Text className="f-14 semi-bold">Testes</Text>
                     <div className="d-flex flex-column">
                         {groupedTests?.map((test) => {
@@ -247,35 +249,66 @@ const TestList: React.FC<Props> = ({ tests }) => {
                                             size={25}
                                             fill={colors.gray3}
                                         />
-                                        <Text className={isOpen ? 'semi-bold' : ''}>{test?.name}</Text>
+                                        <div className="d-flex w-100 align-items-center justify-content-between">
+                                            <Text className={isOpen ? 'semi-bold' : ''}>{test?.name}</Text>
+                                            {isOpen && (
+                                                <Button className="gray small-button" onClick={(e) => { e.stopPropagation(), toast("Em breve") }}>
+                                                    <Icon name="RiFilePdf2Line" size={14} fill={colors.secondary} />
+                                                    <Text className="f-12">Exportar resultados</Text>
+                                                </Button>
+                                            )}
+                                        </div>
                                     </div>
 
                                     {isOpen && (
                                         <>
                                             <div className={`add-test-button ${!isAddingTest ? 'canHover' : ''}`} onClick={() => !isAddingTest && setIsAddingTest(true)}>
                                                 {isAddingTest ? (
-                                                    <>
-                                                        <div className="test-icon cancel">
-                                                            <Icon name="RiCloseFill" size={15} fill={colors.gray3} onClick={cancelTestAdding} />
+                                                    isMobile ? (
+                                                        <div className="d-flex align-items-center justify-content-between w-100">
+                                                            <input
+                                                                type="number"
+                                                                step="0.1"
+                                                                placeholder='Digite o resultado'
+                                                                value={result ?? ''}
+                                                                onChange={(e) => onChange(Number(e.target.value))}
+                                                                className="checkbox-write-input-test"
+                                                                onClick={(e) => e.stopPropagation()}
+                                                                autoFocus
+                                                            />
+                                                            <div className="d-flex align-items-center gap-12">
+                                                                <div className="test-icon cancel">
+                                                                    <Icon name="RiCloseFill" size={20} fill={colors.gray3} onClick={cancelTestAdding} />
+                                                                </div>
+                                                                <div className="test-icon add">
+                                                                    <Icon name="RiCheckFill" size={20} fill={colors.gray3} onClick={() => addTest(test.code, test.name)} />
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className="test-icon add">
-                                                            <Icon name="RiCheckFill" size={15} fill={colors.gray3} onClick={() => addTest(test.code, test.name)} />
-                                                        </div>
-                                                        <input
-                                                            type="number"
-                                                            step="0.1"
-                                                            placeholder='Digite o resultado'
-                                                            value={result ?? ''}
-                                                            onChange={(e) => onChange(Number(e.target.value))}
-                                                            className="checkbox-write-input"
-                                                            onClick={(e) => e.stopPropagation()}
-                                                            autoFocus
-                                                        />
-                                                    </>
+                                                    ) : (
+                                                        <>
+                                                            <div className="test-icon cancel">
+                                                                <Icon name="RiCloseFill" size={15} fill={colors.gray3} onClick={cancelTestAdding} />
+                                                            </div>
+                                                            <div className="test-icon add">
+                                                                <Icon name="RiCheckFill" size={15} fill={colors.gray3} onClick={() => addTest(test.code, test.name)} />
+                                                            </div>
+                                                            <input
+                                                                type="number"
+                                                                step="0.1"
+                                                                placeholder='Digite o resultado'
+                                                                value={result ?? ''}
+                                                                onChange={(e) => onChange(Number(e.target.value))}
+                                                                className="checkbox-write-input-test"
+                                                                onClick={(e) => e.stopPropagation()}
+                                                                autoFocus
+                                                            />
+                                                        </>
+                                                    )
                                                 ) : (
                                                     <>
-                                                        <Icon name="RiAddFill" size={15} fill={colors.gray3} />
-                                                        <Text className="f-12">Adicionar avaliação</Text>
+                                                        <Icon name="RiAddFill" size={isMobile ? 20 : 15} fill={colors.gray3} />
+                                                        <Text className={isMobile ? "f-16" : "f-12"}>Adicionar avaliação</Text>
                                                     </>
                                                 )}
                                             </div>
@@ -302,6 +335,22 @@ const TestList: React.FC<Props> = ({ tests }) => {
                                                     </div>
                                                 )
                                             })}
+                                            {isMobile &&
+                                                (selectedSimilarTests?.length > 1 ? (
+                                                    <div className="chart-wrapper">
+                                                        <div className="d-flex gap-4 flex-column w-100">
+                                                            <div className="w-100 d-flex align-items-center gap-8">
+                                                                <div className={`feedback-circle ${comparedResults === goodFeedback ? "good-feedback" : "bad-feedback"}`} />
+                                                                {comparedResults ?
+                                                                    <Text className="f-14">{comparedResults}</Text> : <Text color={colors.gray3} className="f-12">Selecione duas ou mais avaliações para iniciar a comparação.</Text>
+                                                                }
+                                                            </div>
+
+                                                        </div>
+                                                        <ReactECharts option={option} style={{ height: "100%", width: "100%" }} />
+                                                    </div>
+                                                ) : <Text color={colors.gray2} className="f-14">Selecione duas ou mais avaliações para iniciar a comparação.</Text>
+                                                )}
                                         </>
                                     )}
                                 </div>
@@ -310,27 +359,29 @@ const TestList: React.FC<Props> = ({ tests }) => {
                     </div>
                 </div>
 
-                <div className="chart-wrapper">
-                    {selectedSimilarTests?.length > 1 ? (
-                        <>
-                            <div className="d-flex gap-4 flex-column w-100">
-                                <div className="w-100 d-flex align-items-center gap-8">
-                                    <div className={`feedback-circle ${comparedResults === goodFeedback ? "good-feedback" : "bad-feedback"}`} />
-                                    <Text className="semi-bold">{chartInfo?.name}</Text>
+                {!isMobile && (
+                    <div className="chart-wrapper">
+                        {selectedSimilarTests?.length > 1 ? (
+                            <>
+                                <div className="d-flex gap-4 flex-column w-100">
+                                    <div className="w-100 d-flex align-items-center gap-8">
+                                        <div className={`feedback-circle ${comparedResults === goodFeedback ? "good-feedback" : "bad-feedback"}`} />
+                                        <Text className="semi-bold">{chartInfo?.name}</Text>
+                                    </div>
+                                    {comparedResults ?
+                                        <Text color={colors.gray3} className="f-14">{comparedResults}</Text> : <Text color={colors.gray3} className="f-12">Selecione duas ou mais avaliações para iniciar a comparação.</Text>
+                                    }
                                 </div>
-                                {comparedResults ?
-                                    <Text color={colors.gray3} className="f-14">{comparedResults}</Text> : <Text color={colors.gray3} className="f-12">Selecione duas ou mais avaliações para iniciar a comparação.</Text>
-                                }
-                            </div>
-                            <ReactECharts option={option} style={{ height: "100%", width: "100%" }} />
-                        </>
-                    ) : (
-                        <>
-                            <Image src="/no-chart.png" alt="No chart" width={250} height={250} />
-                            <Text color={colors.gray2} className="f-14">Selecione duas ou mais avaliações para iniciar a comparação.</Text>
-                        </>
-                    )}
-                </div>
+                                <ReactECharts option={option} style={{ height: "100%", width: "100%" }} />
+                            </>
+                        ) : (
+                            <>
+                                <Image src="/no-chart.png" alt="No chart" width={250} height={250} />
+                                <Text color={colors.gray2} className="f-14">Selecione duas ou mais avaliações para iniciar a comparação.</Text>
+                            </>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     ) : (

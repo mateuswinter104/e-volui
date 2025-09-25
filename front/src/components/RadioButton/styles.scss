@@ -1,0 +1,72 @@
+@use "@/styles/colors" as *;
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 12px;
+  position: relative;
+  width: fit-content;
+
+  input {
+    display: none;
+  }
+
+  .radio-mark {
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid $gray4;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  input:checked+.radio-mark {
+    border-color: $secondary;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.radio-button {
+  width: 100%;
+  max-width: 290px;
+  padding: 16px 24px;
+  height: 43px;
+  border: 1px solid $gray4;
+  border-radius: 50px;
+
+  &:hover {
+    background-color: $gray5;
+  }
+
+  &.active {
+    background-color: lighten($color: $secondary, $amount: 20%);
+    border: 1px solid $secondary;
+  }
+
+  @media (max-width: 920px) {
+    max-width: none;
+    height: 48px;
+  }
+}
+
+.check-list {
+  border-bottom: 1px solid $gray4;
+  width: 100%;
+  padding: 16px 8px;
+}
+
+.radio-checked {
+  width: 7px;
+  height: 7px;
+  background-color: $secondary;
+  border-radius: 50px;
+}

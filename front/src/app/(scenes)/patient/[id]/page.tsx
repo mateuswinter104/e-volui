@@ -12,7 +12,7 @@ export default function PatientList({ params }: any) {
   if (!patient) return <div>Paciente não encontrado</div>;
 
   return (
-    <div className="d-flex flex-column">
+    <div className="container">
       <Index patient={patient} />
     </div>
   );

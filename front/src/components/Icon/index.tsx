@@ -55,6 +55,7 @@ import {
   RiMenLine,
   RiWomenLine,
   RiFileList2Line,
+  RiFilePdf2Line,
 } from "react-icons/ri";
 import { BsImageAlt } from "react-icons/bs";
 import { TbFileExport } from "react-icons/tb";
@@ -141,7 +142,8 @@ const iconComponents: Record<string, React.ElementType> = {
   RiShareFill,
   RiWomenLine,
   RiMenLine,
-  RiFileList2Line
+  RiFileList2Line,
+  RiFilePdf2Line
 };
 
 const Icon: React.FC<IconProps> = ({

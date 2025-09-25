@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface TestProps {
   id: number;
   code: string;
@@ -5,6 +7,7 @@ export interface TestProps {
   objective: string;
   description: string;
   result: string;
+  image?: StaticImageData
 }
 export interface Test {
   id: number
@@ -21,6 +24,33 @@ export interface Patient {
   sex: "Feminino" | "Masculino"
   diagnosis: string
   tests: Test[]
+}
+
+export interface PatientData {
+  name: string
+  birth_date: string
+  age: number | null
+  sex: string
+  school: string
+  job: string
+  civil_state: string
+  children: string
+  birth_place: string
+  phone: string
+  postal_code?: string
+  state: string
+  city: string
+  neighborhood: string
+  street: string
+  number: string
+  main_complain: string
+  deasease_history: string
+  diagnosis: string
+  simptoms: string
+  evolution: string
+  other_characteristics: string
+  children_number?: string
+  complement?: string
 }
 
 
@@ -80,30 +110,57 @@ export const functionalTests: TestProps[] = [
     name: "Mini-Mental",
     objective: "Avaliar a capacidade cognitiva",
     description:
-      "Consiste no preenchimento de questões que envolvem (1) orientação do paciente, questionando o ano, estação, dia/semana, dia/mês e mês; (2) capacidade de registro, solicitando que o paciente repita as palavras “pente, rua e azul”; (3) atenção e cálculo, solicitando que o paciente realize um cálculo de subtração cinco vezes;  (4) evocação, solicitando que o paciente repita as palavras pronunciadas na etapa de “capacidade de registro”; e (5) linguagem, solicitando que o paciente identifique objetos, repita uma frase, siga um comando de três estágios, leia, escreva e copie um desenho.",
+      `Consiste no preenchimento de questões que envolvem
+      (1) orientação do paciente, questionando o ano, estação, dia/semana, dia/mês e mês
+      (2) capacidade de registro, solicitando que o paciente repita as palavras “pente, rua e azul”
+      (3) atenção e cálculo, solicitando que o paciente realize um cálculo de subtração cinco vezes
+      (4) evocação, solicitando que o paciente repita as palavras pronunciadas na etapa de “capacidade de registro”
+      e (5) linguagem, solicitando que o paciente identifique objetos, repita uma frase, siga um comando de três estágios, leia, escreva e copie um desenho.`,
     result:
       "O resultado final é obtido através da soma da pontuação que o paciente adquiriu em cada uma das etapas, sendo 30 a pontuação máxima.",
   },
 ];
 
-const generateRandomTests = (): Test[] => {
-  const result: Test[] = [];
+export const tests: Test[] = [
+  // TSL 5
+  { id: 1, name: 'TSL5', code: 'TSL5', created_at: '2025-06-17', result: 25 },
+  { id: 2, name: 'TSL5', code: 'TSL5', created_at: '2025-07-01', result: 22 },
+  { id: 3, name: 'TSL5', code: 'TSL5', created_at: '2025-07-15', result: 22 },
+  { id: 4, name: 'TSL5', code: 'TSL5', created_at: '2025-07-29', result: 20 },
+  { id: 5, name: 'TSL5', code: 'TSL5', created_at: '2025-08-12', result: 18 },
 
-  for (let i = 0; i < 20; i++) {
-    const randomTest = functionalTests[Math.floor(Math.random() * functionalTests.length)];
-    result.push({
-      id: Math.random() * 10000,
-      name: randomTest.name,
-      code: randomTest.code,
-      created_at: new Date(
-        Date.now() - Math.floor(Math.random() * 10000000000)
-      ).toISOString(),
-      result: parseFloat((Math.random() * 30 + 1).toFixed(1)),
-    });
-  }
+  // TST (unificado com máximo 5 resultados)
+  { id: 6, name: 'TST', code: 'TST', created_at: '2025-06-17', result: 7 },
+  { id: 7, name: 'TST', code: 'TST', created_at: '2025-07-01', result: 8 },
+  { id: 8, name: 'TST', code: 'TST', created_at: '2025-07-15', result: 10 },
 
-  return result;
-};
+  // FRT
+  { id: 9, name: 'FRT', code: 'FRT', created_at: '2025-06-17', result: 14 },
+  { id: 10, name: 'FRT', code: 'FRT', created_at: '2025-07-01', result: 18 },
+  { id: 11, name: 'FRT', code: 'FRT', created_at: '2025-07-15', result: 22 },
+  { id: 12, name: 'FRT', code: 'FRT', created_at: '2025-07-29', result: 26 },
+  { id: 13, name: 'FRT', code: 'FRT', created_at: '2025-08-12', result: 26 },
+
+  // MEEM
+  { id: 14, name: 'MEEM', code: 'MEEM', created_at: '2025-06-17', result: 24 },
+  { id: 15, name: 'MEEM', code: 'MEEM', created_at: '2025-08-12', result: 27 },
+
+  // FMPP
+  { id: 16, name: 'FMPP', code: 'FMPP', created_at: '2025-06-17', result: 14.7 },
+  { id: 17, name: 'FMPP', code: 'FMPP', created_at: '2025-07-01', result: 15.2 },
+  { id: 18, name: 'FMPP', code: 'FMPP', created_at: '2025-07-15', result: 16.8 },
+  { id: 19, name: 'FMPP', code: 'FMPP', created_at: '2025-07-29', result: 18.6 },
+  { id: 20, name: 'FMPP', code: 'FMPP', created_at: '2025-08-12', result: 20.1 },
+
+  // TUG
+  { id: 21, name: 'TUG', code: 'TUG', created_at: '2025-06-17', result: 17.8 },
+  { id: 22, name: 'TUG', code: 'TUG', created_at: '2025-07-01', result: 16.5 },
+  { id: 23, name: 'TUG', code: 'TUG', created_at: '2025-07-15', result: 15.7 },
+  { id: 24, name: 'TUG', code: 'TUG', created_at: '2025-07-29', result: 14.8 },
+  { id: 25, name: 'TUG', code: 'TUG', created_at: '2025-08-12', result: 14.2 },
+];
+
+
 
 
 export const patientsList: Patient[] = [
@@ -113,7 +170,7 @@ export const patientsList: Patient[] = [
     age: 67,
     sex: "Feminino",
     diagnosis: "Lombalgia",
-    tests: generateRandomTests()
+    tests
   },
   {
     id: 2,
@@ -121,7 +178,7 @@ export const patientsList: Patient[] = [
     age: 62,
     sex: "Masculino",
     diagnosis: "Hérnia de disco lombar",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 3,
@@ -129,7 +186,7 @@ export const patientsList: Patient[] = [
     age: 73,
     sex: "Feminino",
     diagnosis: "Tendinite suprespinhal ombro esquerdo",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 4,
@@ -137,7 +194,7 @@ export const patientsList: Patient[] = [
     age: 69,
     sex: "Masculino",
     diagnosis: "Artrose joelho direito",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 5,
@@ -145,7 +202,7 @@ export const patientsList: Patient[] = [
     age: 64,
     sex: "Feminino",
     diagnosis: "Sindrome do Impacto Femoroacetabular",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 6,
@@ -153,7 +210,7 @@ export const patientsList: Patient[] = [
     age: 69,
     sex: "Masculino",
     diagnosis: "Entorse de tornozelo esquerdo",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 7,
@@ -161,7 +218,7 @@ export const patientsList: Patient[] = [
     age: 61,
     sex: "Feminino",
     diagnosis: "DPOC",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 8,
@@ -169,7 +226,7 @@ export const patientsList: Patient[] = [
     age: 65,
     sex: "Masculino",
     diagnosis: "Cervicalgia",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 9,
@@ -177,7 +234,7 @@ export const patientsList: Patient[] = [
     age: 70,
     sex: "Feminino",
     diagnosis: "Fibromialgia",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 10,
@@ -185,7 +242,7 @@ export const patientsList: Patient[] = [
     age: 68,
     sex: "Masculino",
     diagnosis: "Parkinson",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 11,
@@ -193,7 +250,7 @@ export const patientsList: Patient[] = [
     age: 75,
     sex: "Feminino",
     diagnosis: "AVC",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 12,
@@ -201,7 +258,7 @@ export const patientsList: Patient[] = [
     age: 63,
     sex: "Masculino",
     diagnosis: "Lombalgia crônica",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 13,
@@ -209,7 +266,7 @@ export const patientsList: Patient[] = [
     age: 66,
     sex: "Feminino",
     diagnosis: "DTM",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 14,
@@ -217,7 +274,7 @@ export const patientsList: Patient[] = [
     age: 61,
     sex: "Masculino",
     diagnosis: "Epicondilite lateral E",
-    tests: generateRandomTests(),
+    tests,
   },
   {
     id: 14,
@@ -225,6 +282,6 @@ export const patientsList: Patient[] = [
     age: 67,
     sex: "Feminino",
     diagnosis: "Cervicalgia",
-    tests: generateRandomTests(),
+    tests,
   },
 ];

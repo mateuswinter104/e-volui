@@ -22,6 +22,7 @@ interface SelectProps {
   required?: boolean
   isLoading?: boolean
   id?: string
+  fluid?: boolean
   onChange: (
     selectedOption: SingleValue<Option> | MultiValue<Option> | Option,
     actionMeta: ActionMeta<Option>
@@ -39,7 +40,8 @@ export const Select: React.FC<SelectProps> = ({
   noClear,
   required,
   isLoading,
-  id = ''
+  id = '',
+  fluid
 }) => {
   const isClearable = options?.length > 1 && !noClear
 
@@ -54,19 +56,22 @@ export const Select: React.FC<SelectProps> = ({
         )}
       </div>
 
-      <ReactSelect
-        options={options}
-        onChange={onChange}
-        noOptionsMessage={() => <Text>Sem opções</Text>}
-        placeholder={placeholder}
-        value={value}
-        isMulti={isMulti}
-        isClearable={isClearable}
-        isDisabled={disabled}
-        classNamePrefix="select"
-        isLoading={isLoading}
-        id={id}
-      />
+      <div style={{ maxWidth: fluid ? '100%' : '290px' }}>
+        <ReactSelect
+          options={options}
+          onChange={onChange}
+          noOptionsMessage={() => <Text>Sem opções</Text>}
+          placeholder={placeholder}
+          value={value}
+          isMulti={isMulti}
+          isClearable={isClearable}
+          isDisabled={disabled}
+          classNamePrefix="select"
+          isLoading={isLoading}
+          inputId={id}
+          instanceId={id}
+        />
+      </div>
     </div>
   )
 }

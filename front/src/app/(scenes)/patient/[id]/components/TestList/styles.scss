@@ -51,14 +51,18 @@
     }
 }
 
-.checkbox-write-input {
+.checkbox-write-input-test {
     display: inline !important;
     border: none;
-    font-size: 12px;
+    font-size: 14px;
     outline: none;
     color: $gray1;
     width: 100%;
     margin-top: -1px;
+
+    @media (max-width: 920px) {
+        font-size: 16px;
+    }
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -80,6 +84,12 @@ input[type="number"] {
     border-radius: 2px;
     padding: 0 2px;
 
+    @media (max-width: 920px) {
+        background-color: $gray5;
+        height: 25px;
+        width: 35px;
+    }
+
     &:hover {
         background-color: $hoverWhite;
 
@@ -94,5 +104,39 @@ input[type="number"] {
                 fill: $error !important;
             }
         }
+    }
+}
+
+.chart-wrapper {
+    height: 350px;
+    width: 100%;
+    max-width: 400px;
+    padding: 32px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: $hoverWhite;
+
+    @media (max-width: 920px) {
+        height: 300px;
+        padding: 24px;
+        max-width: 100%;
+    }
+}
+
+.feedback-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+
+    &.good-feedback {
+        background-color: $primary;
+    }
+
+    &.bad-feedback {
+        background-color: $error;
     }
 }

@@ -4,6 +4,7 @@ import { functionalTests, TestProps } from "@/utils/services/api";
 import { TestsLayout } from "../components/TestLayout";
 import Text from "@/components/Text";
 import { usePathname } from "next/navigation";
+import testImage from '../../../../../public/teste_tsl5.jpg'
 
 export default function Index(): JSX.Element {
   const pathname = usePathname();
@@ -21,6 +22,7 @@ export default function Index(): JSX.Element {
       code={test?.code}
       name={test?.name}
       description={test?.description}
+      image={testImage}
     />
   );
 }

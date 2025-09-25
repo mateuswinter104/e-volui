@@ -240,6 +240,10 @@ ol {
   align-items: center;
 }
 
+.form-group {
+  position: relative;
+}
+
 .form-error-message {
   font-size: 11px;
   color: $error !important;

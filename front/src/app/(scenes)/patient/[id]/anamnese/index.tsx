@@ -89,7 +89,7 @@ const sexOptions: Option[] = [
 ]
 
 interface Props {
-  data: PatientData
+  data: PatientData | ''
   id: number
 }
 

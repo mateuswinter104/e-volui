@@ -32,7 +32,7 @@ export default function Anamnese({ params }: any) {
 
   return (
     <div className="container">
-      <Index data={patientData} id={id ? Number(id) : 0} />
+      <Index data={id == 1 ? patientData : ''} id={id ? Number(id) : 0} />
     </div>
   );
 }

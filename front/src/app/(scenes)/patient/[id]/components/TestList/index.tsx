@@ -319,7 +319,7 @@ const TestList: React.FC<Props> = ({ tests }) => {
                                                     <div key={test.id} className="test-details" onClick={() => selectSimilarTest(test)}>
                                                         <Checkbox
                                                             checked={selectedSimilarTests.some((item) => item.id === test.id)}
-                                                            onChange={() => selectSimilarTest(test)}
+                                                            onChange={() => ''}
                                                         />
 
                                                         <div className="d-flex flex-column w-100">

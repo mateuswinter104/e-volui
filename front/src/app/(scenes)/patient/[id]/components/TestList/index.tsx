@@ -187,9 +187,11 @@ const TestList: React.FC<Props> = ({ tests }) => {
                 const formattedDate = test.created_at ? format(test.created_at, 'dd/MM') : ''
                 return formattedDate
             }),
+            axisLabel: { fontSize: 16 }
         },
         yAxis: {
             type: "value",
+            axisLabel: { fontSize: 16 }
         },
         series: [
             {
@@ -207,6 +209,9 @@ const TestList: React.FC<Props> = ({ tests }) => {
         ],
         tooltip: {
             trigger: "axis",
+            textStyle: {
+                fontSize: 22, // 👈 muda o tamanho da fonte do tooltip
+            },
         },
         grid: {
             left: "3%",
@@ -246,14 +251,14 @@ const TestList: React.FC<Props> = ({ tests }) => {
                                         )}
                                         <Icon
                                             name={isOpen ? "RiArrowDropUpLine" : "RiArrowDropDownLine"}
-                                            size={25}
+                                            size={30}
                                             fill={colors.gray3}
                                         />
                                         <div className="d-flex w-100 align-items-center justify-content-between">
                                             <Text className={isOpen ? 'semi-bold' : ''}>{test?.name}</Text>
                                             {isOpen && (
                                                 <Button className="gray small-button" onClick={(e) => { e.stopPropagation(), toast("Em breve") }}>
-                                                    <Icon name="RiFilePdf2Line" size={14} fill={colors.secondary} />
+                                                    <Icon name="RiFilePdf2Line" size={18} fill={colors.secondary} />
                                                     <Text className="f-12">Exportar resultados</Text>
                                                 </Button>
                                             )}
@@ -278,20 +283,20 @@ const TestList: React.FC<Props> = ({ tests }) => {
                                                             />
                                                             <div className="d-flex align-items-center gap-12">
                                                                 <div className="test-icon cancel">
-                                                                    <Icon name="RiCloseFill" size={20} fill={colors.gray3} onClick={cancelTestAdding} />
+                                                                    <Icon name="RiCloseFill" size={26} fill={colors.gray3} onClick={cancelTestAdding} />
                                                                 </div>
                                                                 <div className="test-icon add">
-                                                                    <Icon name="RiCheckFill" size={20} fill={colors.gray3} onClick={() => addTest(test.code, test.name)} />
+                                                                    <Icon name="RiCheckFill" size={26} fill={colors.gray3} onClick={() => addTest(test.code, test.name)} />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     ) : (
                                                         <>
                                                             <div className="test-icon cancel">
-                                                                <Icon name="RiCloseFill" size={15} fill={colors.gray3} onClick={cancelTestAdding} />
+                                                                <Icon name="RiCloseFill" size={20} fill={colors.gray3} onClick={cancelTestAdding} />
                                                             </div>
                                                             <div className="test-icon add">
-                                                                <Icon name="RiCheckFill" size={15} fill={colors.gray3} onClick={() => addTest(test.code, test.name)} />
+                                                                <Icon name="RiCheckFill" size={20} fill={colors.gray3} onClick={() => addTest(test.code, test.name)} />
                                                             </div>
                                                             <input
                                                                 type="number"
@@ -307,7 +312,7 @@ const TestList: React.FC<Props> = ({ tests }) => {
                                                     )
                                                 ) : (
                                                     <>
-                                                        <Icon name="RiAddFill" size={isMobile ? 20 : 15} fill={colors.gray3} />
+                                                        <Icon name="RiAddFill" size={isMobile ? 25 : 20} fill={colors.gray3} />
                                                         <Text className={isMobile ? "f-16" : "f-12"}>Adicionar avaliação</Text>
                                                     </>
                                                 )}

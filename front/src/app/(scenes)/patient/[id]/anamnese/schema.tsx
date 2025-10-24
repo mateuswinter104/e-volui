@@ -42,6 +42,8 @@ export const schema = yup.object().shape({
     main_complain: yup.string().required('Queixa principal é obrigatória'),
     deasease_history: yup.string().required('Histórico da doença é obrigatório'),
     diagnosis: yup.string().required('Diagnóstico é obrigatório'),
+    risk_events: yup.string().required('Fatores de risco é obrigatório'),
+    medicine: yup.string().required('Medicações em uso é obrigatório'),
     simptoms: yup.string().required('Sinais e sintomas são obrigatórios'),
     evolution: yup.string().required('Início e evolução são obrigatórios'),
     children_number: yup.string().default(''),

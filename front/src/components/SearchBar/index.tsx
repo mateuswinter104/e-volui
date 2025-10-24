@@ -26,7 +26,7 @@ export const SearchBar: React.FC<SearchBar> = ({
         onFocus={() => setActive(true)}
         onBlur={() => setActive(false)}
       >
-        <Icon name="RiSearchLine" size={18} />
+        <Icon name="RiSearchLine" size={25} />
         <input
           type="text"
           className="searchbar"
@@ -42,7 +42,7 @@ export const SearchBar: React.FC<SearchBar> = ({
           <Icon
             name="RiFilter2Line"
             fill={filterActive ? "#ffffff" : "#808080"}
-            size={20}
+            size={25}
           />
         </div>
       )}

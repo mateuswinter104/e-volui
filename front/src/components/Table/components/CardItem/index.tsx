@@ -24,16 +24,16 @@ export const CardItem = ({ item, route }: CardItemProps) => {
     <div className="card-wrapper">
       <Link href={route}>
         <div className="card-content">
-          <div className="d-flex w-100 justify-content-between">
-            <div className="d-flex gap-8 align-items-center">
-              <Text className="semi-bold">{name}</Text>
+          <div className="d-flex w-100 flex-column justify-content-between gap-4">
+            <Text className="semi-bold">{name}</Text>
+            <div className="d-flex align-items-center gap-8">
               <Text className="f-12 light">{`${age} anos`}</Text>
+              <Icon
+                name={isWoman ? "RiWomenLine" : "RiMenLine"}
+                size={20}
+                fill={isWoman ? colors.pink : colors.blue}
+              />
             </div>
-            <Icon
-              name={isWoman ? "RiWomenLine" : "RiMenLine"}
-              size={15}
-              fill={isWoman ? colors.pink : colors.blue}
-            />
           </div>
           <div className="d-flex flex-column">
             <Text color={colors.primary} className="f-12 semi-bold">

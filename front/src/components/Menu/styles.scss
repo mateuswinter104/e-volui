@@ -71,6 +71,7 @@
   right: 16px;
   top: 16px;
 
+
   @media (min-width: 920px) {
     position: initial;
     top: 0;
@@ -78,10 +79,13 @@
     z-index: inherit;
     height: fit-content;
     width: 100%;
-    max-width: 230px;
+    max-width: 280px;
     border: none;
     margin: 40px 0;
     padding: 0;
+    height: 85%;
+    overflow: auto;
+    padding-right: 12px;
 
     .menu-content {
       display: flex;

@@ -1,6 +1,7 @@
+import { PatientData } from "@/utils/services/api";
 import Index from ".";
 
-const patientData = {
+const patientData: PatientData = {
   name: 'Maria Oliveira',
   birth_date: '10/09/1958',
   age: 67,
@@ -24,7 +25,9 @@ const patientData = {
   diagnosis: 'Osteoporose, diagnosticada através de exame pelo médico ortopedista.',
   simptoms: 'Dores pontuais em joelho direito com piora aos esforços, principalmente ao descer escadas e  levantar-se da cadeira.',
   evolution: 'Os sintomas iniciaram há 8 meses, com piora progressiva.',
-  other_characteristics: 'Paciente não realiza atividades físicas e, devido à profissão, passa a maior parte do seu dia sentada.'
+  other_characteristics: 'Paciente não realiza atividades físicas e, devido à profissão, passa a maior parte do seu dia sentada.',
+  risk_events: 'Idoso com doença autoimune em uso de imunossupressores e corticoide, apresentando risco aumentado para infecções, osteoporose e quedas. Refere dor crônica em articulações, fadiga a pequenos esforços, tremores em repouso e episódios de tontura.',
+  medicine: 'diosmin – 1000mg – 1x ao dia, hidroxicloroquina – 1 cp 1x ao dia, prednisolona – 1cp 2x ao dia, metotrexato – 6cp 1x na semana, ácido fólico - 2cp 1x na semana, ômega 3 – 2cp 1x ao dia, tramadol – se dor'
 }
 
 export default function Anamnese({ params }: any) {

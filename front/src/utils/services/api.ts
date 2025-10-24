@@ -47,6 +47,8 @@ export interface PatientData {
   deasease_history: string
   diagnosis: string
   simptoms: string
+  risk_events: string
+  medicine: string
   evolution: string
   other_characteristics: string
   children_number?: string

@@ -97,7 +97,7 @@ export const Table: React.FC<Table> = ({ data, searchTerm }) => {
         <div className="d-flex align-items-center">
           <Icon
             name="RiArrowDropLeftLine"
-            size={35}
+            size={40}
             onClick={() =>
               currentPage === 1 || totalPages === 0
                 ? undefined
@@ -107,7 +107,7 @@ export const Table: React.FC<Table> = ({ data, searchTerm }) => {
           />
           <Icon
             name="RiArrowDropRightLine"
-            size={35}
+            size={40}
             onClick={() =>
               currentPage === totalPages || totalPages === 0
                 ? undefined
@@ -124,7 +124,7 @@ export const Table: React.FC<Table> = ({ data, searchTerm }) => {
     </div>
   ) : (
     <div className="not-found-table-data">
-      <Text className="semi-bold">Ops! Não encontramos nada por aqui.</Text>
+      <Text className="semi-bold f-16">Ops! Não encontramos nada por aqui.</Text>
       <Text className="f-14">
         Tente pesquisar outro paciente ou cadastre novos.
       </Text>

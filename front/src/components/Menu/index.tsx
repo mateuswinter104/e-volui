@@ -68,27 +68,26 @@ export const Menu = () => {
   return isMobile ? (
     <div className={`menu-wrapper ${menuOpen ? "opened" : ""}`}>
       <div className="menu">
-        <Icon name="RiMenuLine" size={20} onClick={() => handleMenu()} />
+        <Icon name="RiMenuLine" size={25} onClick={() => handleMenu()} />
       </div>
       <div
         ref={menuRef}
         className={`menu-opened ${menuOpen ? "slide-in" : "slide-out"}`}
       >
         <div className="menu-header-mobile-opened">
-          <Icon name="RiCloseFill" size={25} onClick={() => handleMenu()} />
+          <Icon name="RiCloseFill" size={30} onClick={() => handleMenu()} />
         </div>
         <div className="d-flex flex-column gap-24">
           <div className="d-flex flex-column gap-8">
             <div
-              className={`menu-item ${
-                menuActive === "patientList" ? "active" : ""
-              }`}
+              className={`menu-item ${menuActive === "patientList" ? "active" : ""
+                }`}
             >
               <div
                 onClick={() => handleMenuItemClick("patientList")}
                 className="d-flex w-100 gap-32 align-items-center justify-content-between"
               >
-                <Text color={menuActive === "patientList" ? colors.white : ""}>
+                <Text className="f-16" color={menuActive === "patientList" ? colors.white : ""}>
                   Lista de pacientes
                 </Text>
                 <Text
@@ -109,9 +108,8 @@ export const Menu = () => {
                 <div
                   key={index}
                   onClick={() => handleMenuItemClick(item.code)}
-                  className={`menu-item ${
-                    menuActive === item.code ? "active" : ""
-                  }`}
+                  className={`menu-item ${menuActive === item.code ? "active" : ""
+                    }`}
                 >
                   <div className="d-flex flex-column gap-1">
                     <Text
@@ -142,13 +140,12 @@ export const Menu = () => {
         </Text>
         <div
           onClick={() => handleMenuItemClick("patientList")}
-          className={`menu-item ${
-            menuActive === "patientList" ? "active" : ""
-          }`}
+          className={`menu-item ${menuActive === "patientList" ? "active" : ""
+            }`}
         >
           <Text
             color={menuActive === "patientList" ? colors.white : ""}
-            className="semi-bold"
+            className="semi-bold f-16"
           >
             Lista de pacientes
           </Text>
@@ -163,13 +160,13 @@ export const Menu = () => {
             <div className="d-flex flex-column gap-1">
               <Text
                 color={menuActive === item.code ? colors.white : ""}
-                className="f-12"
+                className="f-1z"
               >
                 {item.name}
               </Text>
               <Text
                 color={menuActive === item.code ? colors.white : ""}
-                className="semi-bold"
+                className="semi-bold f-16"
               >
                 {item.code}
               </Text>

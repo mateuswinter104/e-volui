@@ -121,7 +121,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
           {icon && (
             <div className="icon-input">
-              <Icon name={icon} fill={colors.primary} size={18} />
+              <Icon name={icon} fill={colors.primary} size={25} />
             </div>
           )}
         </div>

@@ -43,6 +43,8 @@ interface FormValues {
   main_complain: string
   deasease_history: string
   diagnosis: string
+  risk_events: string
+  medicine: string
   simptoms: string
   evolution: string
   postal_code: string | null
@@ -120,6 +122,8 @@ export default function Index({ data, id }: Props): JSX.Element {
       main_complain: '',
       deasease_history: '',
       diagnosis: '',
+      risk_events: '',
+      medicine: '',
       simptoms: '',
       evolution: '',
       other_characteristics: ''
@@ -182,6 +186,8 @@ export default function Index({ data, id }: Props): JSX.Element {
         main_complain,
         deasease_history,
         diagnosis,
+        risk_events,
+        medicine,
         simptoms,
         evolution,
         other_characteristics,
@@ -212,6 +218,8 @@ export default function Index({ data, id }: Props): JSX.Element {
         main_complain,
         deasease_history,
         diagnosis,
+        risk_events,
+        medicine,
         simptoms,
         evolution,
         other_characteristics,
@@ -806,6 +814,54 @@ export default function Index({ data, id }: Props): JSX.Element {
           {errors.other_characteristics && (
             <Text className="form-error-message">
               {errors.other_characteristics.message}
+            </Text>
+          )}
+        </div>
+      </div>
+      <div className="inputs-column">
+        <div className="form-group w-100">
+          <Controller
+            name="risk_events"
+            control={control}
+            render={({ field }) => (
+              <TextArea
+                label={
+                  <Text className="f-16">Fatores de risco</Text>
+                }
+                placeholder="Digite os fatores de risco"
+                rows={5}
+                fluid
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          {errors.risk_events && (
+            <Text className="form-error-message">
+              {errors.risk_events.message}
+            </Text>
+          )}
+        </div>
+        <div className="form-group w-100">
+          <Controller
+            name="medicine"
+            control={control}
+            render={({ field }) => (
+              <TextArea
+                label={
+                  <Text className="f-16">Medicações em uso</Text>
+                }
+                placeholder="Digite as medicações em uso"
+                rows={5}
+                fluid
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          {errors.medicine && (
+            <Text className="form-error-message">
+              {errors.medicine.message}
             </Text>
           )}
         </div>
